@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -29,9 +30,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 String a = input1.getText().toString();
                 String b = input2.getText().toString();
-                intent.putExtra("text_userid", a);
-                intent.putExtra("text_userpwd",b);
-                startActivity(intent);
+                if(a.equals("admin") && b.equals("123") ){
+                    intent.putExtra("name", a);
+                    intent.putExtra("text_userpwd",b);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(MainActivity.this,"密码错误或者用户名错误",Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:
                 break;
