@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,12 +26,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.a15828.singleintent.adapter.PersonAadater;
 import com.example.a15828.singleintent.adapter.PersonAdapter;
 import com.example.a15828.singleintent.pojo.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.support.design.widget.TabLayout.MODE_FIXED;
+import static com.ashokvarma.bottomnavigation.BottomNavigationBar.BACKGROUND_STYLE_RIPPLE;
 
 public class SecondActivity extends AppCompatActivity{
     private TextView tv;
@@ -40,7 +46,7 @@ public class SecondActivity extends AppCompatActivity{
     private Context context;
     private DrawerLayout drawerLayout;
     private List<Person> personList = new ArrayList<>();
-
+    BottomNavigationBar bottomNavigationBar;
     /*
     setContentView这个方法一定要在findViewById方法之前，不然就会出错：
      */
@@ -63,7 +69,7 @@ public class SecondActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        //
+
 //        if(Build.VERSION.SDK_INT >=21){
 //            View descorView = getWindow().getDecorView();
 //            descorView.setSystemUiVisibility(
@@ -71,7 +77,7 @@ public class SecondActivity extends AppCompatActivity{
 //            );
 //            getWindow().setStatusBarColor(Color.TRANSPARENT);
 //        }
-//        getSupportActionBar().hide();
+
 
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -97,7 +103,15 @@ public class SecondActivity extends AppCompatActivity{
         PersonAadater adapter = new PersonAadater(personList);
 //        PersonAdapter adapter = new PersonAdapter(SecondActivity.this,R.layout.person_item,personList);
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 
+        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottomNavigationBar);
+        bottomNavigationBar
+                .addItem(new BottomNavigationItem(R.drawable.dx,"消息"))
+                .addItem(new BottomNavigationItem(R.drawable.txl,"通讯录"))
+                .addItem(new BottomNavigationItem(R.drawable.fx,"发现"))
+                .setFirstSelectedPosition(0) //设置默认选中位置
+                .initialise();
     }
 
 
@@ -112,4 +126,7 @@ public class SecondActivity extends AppCompatActivity{
     }
 
 
-}
+
+    }
+
+
