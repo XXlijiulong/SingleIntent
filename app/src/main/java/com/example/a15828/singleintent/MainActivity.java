@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         input2 = this.findViewById(R.id.login_edit_password);
         submit = this.findViewById(R.id.login_but_landing);
         submit.setOnClickListener(this);
+//        getSupportActionBar().hide();
     }
     @Override
     public void onClick(View v){
@@ -30,13 +31,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 String a = input1.getText().toString();
                 String b = input2.getText().toString();
-                if(a.equals("admin") && b.equals("123") ){
-                    intent.putExtra("name", a);
-                    intent.putExtra("text_userpwd",b);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(MainActivity.this,"密码错误或者用户名错误",Toast.LENGTH_SHORT).show();
-                }
+                startActivity(intent);
+//                if(a.equals("admin") && b.equals("123")){
+//                    intent.putExtra("name", a);
+//                    intent.putExtra("text_userpwd",b);
+//                    startActivity(intent);
+//                }else{
+//                    Toast.makeText(MainActivity.this,"密码错误或者用户名错误",Toast.LENGTH_SHORT).show();
+//                }
                 break;
             default:
                 break;
